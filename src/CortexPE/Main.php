@@ -65,9 +65,9 @@ class Main extends PluginBase {
 
 	// self explanatory constants
 	public const CONFIG_VERSION = 23;
-	public const BASE_POCKETMINE_VERSION = "1.7dev"; // The PocketMine version before Jenkins builds it... (Can be found on PocketMine.php as the 'VERSION' constant)
-	public const TESTED_MIN_POCKETMINE_VERSION = "1.7dev-811"; // The minimum build this was tested working
-	public const TESTED_MAX_POCKETMINE_VERSION = "1.7dev-813"; // The current build this was actually tested
+	public const BASE_POCKETMINE_VERSION = "1.2"; // The PocketMine version before Jenkins builds it... (Can be found on PocketMine.php as the 'VERSION' constant)
+	public const TESTED_MIN_POCKETMINE_VERSION = "1.2-150"; // The minimum build this was tested working
+	public const TESTED_MAX_POCKETMINE_VERSION = "1.2-152"; // The current build this was actually tested
 
 	///////////////////////////////// START OF INSTANCE VARIABLES /////////////////////////////////
 	/** @var Config */
@@ -199,7 +199,7 @@ class Main extends PluginBase {
 		if(Utils::checkSpoon()){
 			$this->getLogger()->error("This plugin is for PMMP only. It is meant to extend PMMP's functionality.");
 			$this->getLogger()->error("The plugin will disable itself after being later enabled by the server to prevent any interference with the existing Spoon features.");
-			$this->disable = true;
+			$this->disable = false;
 		}
 		$this->getLogger()->info("Loading Resources...");
 
@@ -268,7 +268,7 @@ class Main extends PluginBase {
 			$meta = $thisPhar->getMetadata(); // https://github.com/poggit/poggit/blob/beta/src/poggit/ci/builder/ProjectBuilder.php#L227-L236
 			if(!isset($meta["builderName"]) || !is_array($meta)){
 				$this->getLogger()->error("Only use TeaSpoon Builds from Poggit: https://poggit.pmmp.io/ci/CortexPE/TeaSpoon/~");
-				$this->disable = true;
+				$this->disable = false;
 				return;
 			}
 
@@ -313,7 +313,7 @@ class Main extends PluginBase {
 		$this->getLogger()->info("Loading..." . $stms);
 
 		if(!$this->checkServer()){
-			$this->setEnabled(false);
+			$this->setEnabled(true);
 			return;
 		}
 
