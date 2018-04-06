@@ -57,10 +57,10 @@ class TextFormat extends PMTextFormat {
 	public const RGB_WHITE = [63,63,63];
 
 	public static function center(string $text): string{
-		$clear = TextFormat::clean($input);
+		$clear = TextFormat::clean($text);
 		$lines = explode("\n", $clear);
 		$max = max(array_map("strlen", $lines));
-		$lines = explode("\n", $input);
+		$lines = explode("\n", $text);
 		foreach($lines as $key => $line){
 			$lines[$key] = str_pad($line, $max + self::colorCount($line), " ", STR_PAD_LEFT);
 		}
@@ -72,7 +72,7 @@ class TextFormat extends PMTextFormat {
 		$colors = "abcdef0123456789lo";
 		$count = 0;
 		for($i = 0; $i < strlen($colors); $i++){
-			$count += substr_count($input, "§" . $colors{$i});
+			$count += substr_count($yazi, "§" . $colors{$i});
 		}
 
 		return $count;
