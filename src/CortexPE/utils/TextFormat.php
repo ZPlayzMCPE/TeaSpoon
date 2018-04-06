@@ -56,7 +56,7 @@ class TextFormat extends PMTextFormat {
 	public const RGB_YELLOW = [63,63,21];
 	public const RGB_WHITE = [63,63,63];
 
-	public static function center(string $input){
+	public static function center(string $text): string{
 		$clear = TextFormat::clean($input);
 		$lines = explode("\n", $clear);
 		$max = max(array_map("strlen", $lines));
@@ -68,7 +68,7 @@ class TextFormat extends PMTextFormat {
 		return implode("\n", $lines);
 	}
 
-	public static function colorCount(string $input){
+	public static function colorCount(string $yazi) : int{
 		$colors = "abcdef0123456789lo";
 		$count = 0;
 		for($i = 0; $i < strlen($colors); $i++){
